@@ -12,6 +12,7 @@ Kullanıcılar notlarını kaydedebilir, düzenleyebilir ve Ollama üzerinden ya
 - Basit ve kullanışlı tasarım
 
 ---
+<img width="1886" height="439" alt="image" src="https://github.com/user-attachments/assets/6b95f01e-7851-4261-8483-d31345bb48dc" />
 
 ## ⚙️ Kurulum ve Çalıştırma
 
@@ -42,5 +43,5 @@ curl http://localhost:11434/api/generate -d '{
   "stream": false
 }'
 
-<img width="1886" height="439" alt="image" src="https://github.com/user-attachments/assets/e2a9439e-974a-4f2d-8587-0596b287d326" />
+
 
