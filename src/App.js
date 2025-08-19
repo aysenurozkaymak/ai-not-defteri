@@ -1,23 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
 function App() {
+  const [input, setInput] = useState("");
+  const [response, setResponse] = useState("");
+
+  const handleSend = async () => {
+    try {
+      const res = await fetch("http://localhost:11434/api/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "llama3.2",
+          prompt: input,
+          stream: false,
+        }),
+      });
+
+      const data = await res.json();
+      setResponse(data.response);
+    } catch (err) {
+      console.error("Hata:", err);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: 20 }}>
+      <h1>📝 Not Defteri - Ollama</h1>
+      <textarea
+        rows={3}
+        cols={50}
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Bir şey yaz..."
+      />
+      <br />
+      <button onClick={handleSend}>Gönder</button>
+      <h2>Cevap:</h2>
+      <p>{response}</p>
     </div>
   );
 }
